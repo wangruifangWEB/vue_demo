@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>demo1</title>
+		<style>
+			#demo {
+		        font-family: 'Helvetica', Arial, sans-serif;
+		      }
+		      a {
+		        text-decoration: none;
+		        color: #f66;
+		      }
+		      li {
+		        line-height: 1.5em;
+		        margin-bottom: 20px;
+		      }
+		      .author,.date {
+		        font-weight: bold;
+		      }
+		</style>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="demo">
+			<!--回顾-->
+			<span>{{message}}</span>
+			
+			<p v-if='seen'>你快看到我了</p>
+			
+			<li v-for='todo in todos'>{{todo.text}}</li>
+			
+			<button v-on:click="reverseMessage">逆转消息</button>
+			
+			<input v-model="message"></input>
+			
+			<!--组件-->
+			  <!-- 创建一个 todo-item 组件的实例 -->
+			<template id="myCom">
+			    <div>
+			    	<my-com></my-com>
+			    </div>
+			</template>
+		</div>
+		<script>
+			//回顾
+			var app=new Vue({
+				el:'#demo',
+				data:{
+					message:'你好，老朋友',
+					seen:true,
+					todos:[
+						{text:'1'},
+						{text:'2'},
+						{text:'3'}
+					]
+				},
+				methods:{
+					reverseMessage:function(){
+						this.message = this.message.split('').reverse().join('');
+					}
+				},
+				components:{
+					'my-com': {
+				        template: "<div style='margin:2rem 0'>这是我的组件</div>"
+				    }
+				}
+			});
+			
+			//组件
+			/*Vue.component('item-todo',{
+				props:['todo'],
+				template:'<li>{{todo.text}}</li>'
+			})*/
+		</script>
+	</body>
+</html>

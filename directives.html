@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>directives 指令</title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app_directives">
+			{{message}}
+			
+			<!--加载更多-->
+			<button v-if="hasMore">加载更多</button>
+			<p v-else="!hasMore">没有更多数据可以加载了</p>
+			
+			<!--if语句-->
+			<p v-if="answer == 1">答案一</p>
+			<p v-else-if="answer == 2">答案二</p>
+			<p v-else-if="answer == 3">答案三</p>
+			
+			<!--v-for-->
+			<ul>
+				<li v-for="item in list">{{item}}</li>
+			</ul>
+			
+			<!---->
+			<ul>
+				<li v-for="(item,index) in list" @click=funcClickItem(index,$event)></li>
+			</ul>
+			
+			<ul>
+				<li v-for="(value,key,index) in obj">{{'index is'+index+','+'value is'+value}}</li>
+			</ul>
+			
+			<!--v-bind-->
+			<img v-bind:src="'img/'+imgName" alt=""/>
+			<img :src="'img/'+imgName2" alt="" />
+			
+			<!--a标签-->
+			<a v-bind:href="linkUrl">点击进入百度</a>
+			<hr />
+			<a :href="linkUrl2">点击进入搜狐</a>
+			
+			<hr />
+			<!--绑定用户输入内容-->
+			<input type="text" v-model="userName"/>
+			<p>{{'用户输入的内容是'+userName}}</p>
+			
+			<hr />
+			
+			<!---->
+			<input type="number" v-model.number="userAge1"/>
+			<hr />
+			<input type="number" v-model.number="userAge2"/>
+			<p>{{userAge1 + userAge2}}</p>
+			
+			<!--绑定点击事件-->
+			<button v-on:click=funcClick>点击</button>
+			
+			<!--change事件-->
+			<input type="text" v-on:change="funcChange" />
+			
+			<hr />
+			<select name="" id="" @change="funcSelect">
+				<option value="r">red</option>
+				<option value="g">green</option>
+				<option value="b">blue</option>
+			</select>
+			
+			
+			<form action="" v-on:submit.prevent="funSubmit">
+				用户是否同意
+				<input type="checkbox" v-model="userIsAgree"/>
+				<hr	 />
+				<button>提交</button>
+			</form>
+			
+			<p>{{count}}</p>
+			<p on-once>{{count}}</p>
+		</div>
+		
+		<script>
+			var app = new Vue({
+				el:'#app_directives',
+				data:{
+					message:'direvtives 练习',
+					hasMore:true,
+					answer:3,
+					list:[1,2,3,4,5],
+					obj:{name:'w',p:'1',l:'small'},
+					imgName:'4.jpg',
+					imgName2:'6.jpg',
+					linkUrl:'http://www.baidu.com',
+					linkUrl2:'http://www.sohu.com',
+					userName:'大家好',
+					userAge1:'16',
+					userAge2:'18',
+					userIsAgree:true,
+					count:0
+				},
+				methods:{
+					funcClick:function(){
+						console.log('btn is clicked');
+						this.count++;
+					},
+					funcClickItem:function(index){
+						console.log(index);
+					},
+					funcChange:function(e){
+						console.log(e.target.value);
+					},
+					funcSelect:function(e){
+						console.log(e.target.value);
+					},
+					funSubmit:function(e){
+						console.log(this.userIsAgree);
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
