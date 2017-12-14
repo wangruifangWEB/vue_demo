@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id="example">
+			<h1>{{message}}</h1>
+			<p>计算属性{{operateMsg}}</p>
+			<button @click="funcClick()">click me</button>
+		</div>
+		
+		<script>
+			//我们为什么需要缓存？假设我们有一个性能开销比较大的的计算属性 A ，
+			// 它需要遍历一个极大的数组和做大量的计算。然后我们可能有其他的计算属性依赖于 A 。
+			// 如果没有缓存，我们将不可避免的多次执行 A 的 getter！如果你不希望有缓存，请用 method 替代
+			var app= new Vue({
+				el:'#example',
+				data:{
+					message:'Hello Vue',
+					progress:'start',
+					count:0
+				},
+				computed:{
+					operateMsg:function(){
+						console.log('in operateMsg');
+						return this.progress;
+					}
+				},
+				methods:{
+					funcClick:function(){
+						this.count++;
+						if(this.count == 5){
+							this.progress = 'middle';
+						}else if(this.count == 10){
+							this.progress = 'done';
+						}
+					}
+				}
+				
+			});
+		</script>
+	</body>
+</html>

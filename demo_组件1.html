@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id= 'example'>
+			<my-component></my-component>
+		</div>
+		
+		<script>
+			//注册
+			Vue.component('my-component',{
+				template:'<div>A custom component!</div>'
+			});
+			//创建跟实例
+			new Vue({
+				el:'#example'
+			})
+		</script>
+	</body>
+</html>

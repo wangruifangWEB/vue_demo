@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<div id="example">
+			<h1>{{message}}</h1>
+			
+			<button @click="funcClick">click me</button>
+		</div>
+		
+		<script>
+			var app = new Vue({
+				el:'#example',
+				data:{
+					message:'Hello VueJs'
+				},
+				methods:{
+					funcClick:function(){
+						this.message='being modfied';
+						var num=Math.random() * 100;
+						
+						console.log(num);
+						
+						if(num < 80){
+							// https://cn.vuejs.org/v2/api/#实例属性
+							app.$destroy();
+						}
+					}
+				},	
+				beforeCreate:function(){
+					console.log('before create');
+				},
+				created:function(){
+					console.log('created');
+				},
+				beforeMount:function(){
+					console.log('before mount');
+				},
+				mounted:function(){
+					console.log('mounted');
+				},
+				beforeUpdate:function(){
+					console.log('before update');
+				},
+				updated:function(){
+					console.log('updated');
+				},
+				beforeDestory:function(){
+					console.log('before destory');
+				},
+				destoryed:function(){
+					console.log('destoryed');
+				}
+			});
+		</script>
+	</body>
+</html>
