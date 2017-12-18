@@ -8,11 +8,13 @@
     <script src="js/vue-router.js"></script>
     <script src="tpl/main.js"></script>
     <script src="tpl/login.js"></script>
+    <script src="tpl/register.js"></script>
     <title></title>
 </head>
 
 <body>
     <div id='example'>
+
         {{message}}
         <h1>Hello App!</h1>
         <!--
@@ -31,6 +33,7 @@
             <router-link to="/myMain">Go to Main</router-link>
             <router-link to="/myLogin">Go to Login</router-link>
             <router-link to="/myTest">Go to Test</router-link>
+            <router-link to="/myRegister">Go to Test</router-link>
         </p>
         <!-- 路由出口 -->
         <!-- 路由匹配到的组件将渲染在这里 -->
@@ -60,6 +63,9 @@
         {
             path: '/myTest',
             component: test
+        },{
+        	path:'/myRegister',
+        	compontent:regsiter
         }
         ]
         // 3. 创建 router 实例，然后传 `routes` 配置

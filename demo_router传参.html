@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	    <script src="js/jquery.min.js"></script>
+	    <script src="js/vue.js"></script>
+	    <script src="js/vue-router.js"></script>
+	    <script src="tpl/list.js"></script>
+	    <script src="tpl/details.js"></script>
+	    <title></title>
+	</head>
+	<body>
+		 <div id='example'>
+	        <!-- 定义加载代码片段的容器 -->
+	        <router-view></router-view>
+    	</div>
+    <script>
+        var myRoutes  = [{
+            path: '/',
+            component: List
+        },
+        {
+            path: '/myList',
+            component: List
+        },{
+            path: '/myDetail/:id',
+            component:Detail
+        },{
+            path: '*',
+            component: List
+        }
+        ]
+        
+        const myRouter  = new VueRouter({
+            routes:myRoutes // （缩写）相当于 routes: routes
+        })
+        
+        var app = new Vue({
+            router: myRouter ,
+            el: '#example',
+            data: {
+                message: 'Hello VueJS'
+            }
+        });
+      
+    </script>
+	</body>
+</html>
