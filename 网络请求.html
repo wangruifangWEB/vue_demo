@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title></title>
+		<script src="js/vue.js"></script>
+		<script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
+	</head>
+	<body>
+		<div id="example">
+			{{message}}
+			<button @click="getData">请求数据</button>
+		</div>
+		
+		<script>
+			var app = new Vue({
+				el:'#example',
+				data:{
+					message:"Hello Vue"
+				},
+				methods:{
+					getData:function(){
+						console.log('btn is clicked');
+						this.$http.get('data/test.json')
+						.then(function(response){
+							console.log(response);
+							console.log(response.data);
+						})
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
